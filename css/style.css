@@ -100,11 +100,24 @@ body {
 /* Container */
 .container {
     padding: 20px;
-    max-width: 1000px;
     margin: 20px auto;
     background: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: fit-content;  
+    min-width:  fit-content;   
+    max-width: none;  
+}
+
+.container-dashboard {
+    padding: 20px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: fit-content;  
+    min-width:  100%;   
+    max-width: none;  
 }
 
 /* Forms & Inputs */
@@ -114,6 +127,7 @@ input[type=text], input[type=password], input[type=number] {
     margin: 8px 0;
     box-sizing: border-box;
 }
+/* Styling tombol default */
 button {
     background-color: #fbc02d;
     color: #333;
@@ -123,6 +137,27 @@ button {
     font-weight: bold;
     border-radius: 4px;
 }
+/* Tambahan styling untuk tombol hapus */
+.delete {
+    background-color: #e83737;
+    color: #333;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+}
+/* Tambahan styling untuk tombol edit */
+.edit {
+    background-color: #2db3fb;
+    color: #333;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
 button:hover {
     background-color: #f9a825;
 }
@@ -154,26 +189,6 @@ button:hover {
     cursor: pointer;
 }
 
-/* Tracking Timeline */
-.timeline-item {
-    padding: 10px 0;
-    border-left: 3px solid #fbc02d;
-    margin-left: 10px;
-    padding-left: 15px;
-    position: relative;
-}
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -9px;
-    top: 15px;
-    width: 15px;
-    height: 15px;
-    background: #fff;
-    border: 3px solid #fbc02d;
-    border-radius: 50%;
-}
-
 /* Table */
 table {
     width: 100%;
@@ -188,57 +203,76 @@ th, td {
     text-align: left;
 }
 
-/* --- Tracking UI mengikuti section bagian status tracking--- */
-.tracking-header {
-    background-color: #3949ab; /* Warna biru*/
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-.tracking-header h3 { 
-    margin: 0 0 10px 0; 
-    font-size: 16px;
-}
-.tracking-header p { 
-    margin: 5px 0; 
-    font-size: 12px; 
-    color: #e0e0e0;
+
+/* Menyeragamkan lebar semua field di dalam SweetAlert2 */
+.swal2-popup .swal2-input,
+.swal2-popup .swal2-select,
+.swal2-popup .swal2-textarea {
+    width: 80% !important;     
+    box-sizing: border-box !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-/* Garis Masa (Timeline) Kuning */
-.timeline-container {
-    margin-top: 20px;
-    padding-left: 10px;
+
+/* Style untuk filter data */
+.select-filter {
+    display: flex;
+    align-items: center;
 }
-.timeline-item {
-    padding: 0 0 25px 25px;
-    position: relative;
-    border-left: 2px solid #fbc02d; /* Garis kuning */
-    margin-left: 5px;
+
+div .filter-container input[type="checkbox"], .date-do input[type="date"] {
+    width: auto !important;
+    margin-right: 8px !important;
 }
-.timeline-item:last-child {
-    border-left: 2px solid transparent; /* Sembunyikan garis pada item terakhir */
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -7px; /* Letak titik di atas garis */
-    top: 0;
-    width: 12px;
-    height: 12px;
-    background-color: #fbc02d; /* Titik kuning */
-    border-radius: 50%;
+div:where(.filter-container) select, .date-do input[type="date"] {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: inherit;
+    box-shadow: none;
 }
-.timeline-date {
-    float: right;
-    color: #666;
-    font-size: 12px;
+
+.filter-container h4 {
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
 }
-.timeline-content {
-    font-size: 14px;
-    color: #333;
+
+div:where(.filter-container) select, .reset-filter-btn, .date-do input[type="date"] {
+    background-color: #d9d8d4;
+    color: #29303B;
+    font-weight: 600;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+div:where(.filter-container) select:hover, .reset-filter-btn:hover,  .date-do input[type="date"]:hover {
+    background-color: #bfbeb9;
+}
+
+/* Style untuk tulisan stok : menipis kosong atau aman*/
+.warning {
+    color: #ffd500;
+    font-weight: bold;
+}
+.danger {
+    color: #f44336;
+    font-weight: bold;
+}
+.success {
+    color: #4caf50;
+    font-weight: bold;
 }
